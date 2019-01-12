@@ -56,19 +56,19 @@ class OldSchoolPing(object):
         creates a results report using the objects report_name attr.
         """
         sorted_list = sorted(self.world_info, key=lambda x: (self.world_info[x]['ping_times']))
-        # print(sorted_list)
         with open(self.report_name, 'w') as _w:
             _w.write('=======================================\n')
             _w.write('## Report Generation: {}\n'.format(
                 datetime.datetime.now().strftime('%Y-%m-%d %H:%M')))
             _w.write('=======================================\n\n\n')
+            _w.write('{:<15} {:<35} {:<5}\n\n'.format('Pinged Item', 'DNS', 'Ping Time'))
             for item in sorted_list:
                 _w.write('{:<15} {:<35} {:<5}\n'.format(
                     item + ':',
                     self.world_info[item]['dns_pattern'],
                     self.world_info[item]['ping_times'])
                 )
-                _w.write('-' * 56 + '\n')
+                _w.write('-' * 65 + '\n')
 
 
 if __name__ == '__main__':
